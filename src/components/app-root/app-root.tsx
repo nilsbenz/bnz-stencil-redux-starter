@@ -1,5 +1,5 @@
+import { Component, h, Prop, State } from '@stencil/core';
 import '@stencil/redux';
-import { Component, h, State, Prop } from '@stencil/core';
 import { Store } from '@stencil/redux';
 import { configureStore } from '../../store';
 import { AppState } from '../../store/types';

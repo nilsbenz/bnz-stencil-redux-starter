@@ -1,4 +1,4 @@
-import { IncrementCounterAction, INCREMENT_COUNTER, DECREMENT_COUNTER, DecrementCounterAction } from "./types";
+import { DecrementCounterAction, DECREMENT_COUNTER, IncrementCounterAction, INCREMENT_COUNTER } from "./types";
 
 export const incrementCounter = (): IncrementCounterAction => {
   return {
@@ -6,8 +6,22 @@ export const incrementCounter = (): IncrementCounterAction => {
   };
 }
 
+export const incrementCounterAsync = () => (dispatch, _getState) => {
+  const action = {
+    type: INCREMENT_COUNTER
+  };
+  setTimeout(() => dispatch(action), 1000);
+}
+
 export const decrementCounter = (): DecrementCounterAction => {
   return {
     type: DECREMENT_COUNTER
   };
+}
+
+export const decrementCounterAsync = () => (dispatch, _getState) => {
+  const action = {
+    type: DECREMENT_COUNTER
+  };
+  setTimeout(() => dispatch(action), 1000);
 }
