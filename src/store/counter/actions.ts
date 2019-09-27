@@ -1,4 +1,6 @@
 import { DecrementCounterAction, DECREMENT_COUNTER, IncrementCounterAction, INCREMENT_COUNTER } from "./types";
+import { Dispatch } from "redux";
+import { AppState } from "../types";
 
 export const incrementCounter = (): IncrementCounterAction => {
   return {
@@ -6,11 +8,15 @@ export const incrementCounter = (): IncrementCounterAction => {
   };
 }
 
-export const incrementCounterAsync = () => (dispatch, _getState) => {
+export const incrementCounterAsync = () => async (dispatch: Dispatch, _getState: () => AppState): Promise<void> => {
   const action = {
     type: INCREMENT_COUNTER
   };
-  setTimeout(() => dispatch(action), 1000);
+  return new Promise(resolve => {
+    setTimeout(resolve, 1000);
+  }).then(() => {
+    dispatch(action);
+  });
 }
 
 export const decrementCounter = (): DecrementCounterAction => {
@@ -19,9 +25,13 @@ export const decrementCounter = (): DecrementCounterAction => {
   };
 }
 
-export const decrementCounterAsync = () => (dispatch, _getState) => {
+export const decrementCounterAsync = () => async (dispatch: Dispatch, _getState: () => AppState): Promise<void> => {
   const action = {
     type: DECREMENT_COUNTER
   };
-  setTimeout(() => dispatch(action), 1000);
+  return new Promise(resolve => {
+    setTimeout(resolve, 1000);
+  }).then(() => {
+    dispatch(action);
+  });
 }
